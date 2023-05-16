@@ -442,8 +442,20 @@ $$
 
 综合以上 $4$ 个定理，我们便给出了一个数存在原根的充要条件。
 
-### 最小原根的数量级
+### 素数最小原根的数量级
 
-王元于 $1959$ 年证明了若 $m$ 有原根，其最小原根是不多于 $m^{0.25}$ 级别的。此处略去证明。
+王元于 $1959$ 年证明了若 $m$ 有素数，其最小原根是 O(m^{0.25+s}) 的。此处略去证明，给出[链接](https://kns.cnki.net/kcms2/article/abstract?v=6oglyc8kNW7TA8U0BHEgmHmp9zyFRbDjrLUts8diVv0kWFgU4YTPjv1SRKaVqd3roKEE3TBpX5c58qhvf5Wj41_CT46vWMtg1mQtNxQkh8jI2vP6vm4RhWJW0ng5Fja-aqPT-m_lLWixTr2RtN4it3PCC1hKMFPg&uniplatform=NZKPT)。
 
-这保证了我们暴力找一个数的最小原根，复杂度是可以接受的。
+这保证了我们暴力找一个素数的最小原根，复杂度是可以接受的。
+
+### 求一个正整数的所有原根
+
+要求一个不一定是素数的数的原根，如果想小到大枚举，枚举的次数是 $O(m)$ 的。
+
+如果要求任意正整数的原根，由于上文提到的，如果一个数 $m$ 有原根，那它的原根有 $\varphi(\varphi(m))$ 个。
+
+在 $2\times 10^8$ 以内，$\frac{\varphi(\varphi(m))}{m}$ 大于 $0.035$。
+
+所以我们只要随机 $400$ 次，基本上就可以找到 $m$ 的其中一个原根 $g_0$。
+
+然后再在 $1$ 到 $\varphi(m)$ 中找到所有与 $\varphi(m)$ 互质的所有 $x$，求出所有 $g_0^x\bmod m$ 即可。
